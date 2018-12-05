@@ -11,15 +11,18 @@ let
   '';
 in
 pkgs.mkShell rec {
-buildInputs = with ocamlPackages;
-    [ ocaml
-      core
-      core_extended
-      findlib
-      utop
-      merlin
-      ocp-indent
-    ];
+  buildInputs = with pkgs; [
+    dune
+  ] ++ ( with ocamlPackages;
+  [
+    ocaml
+    core
+    core_extended
+    findlib
+    utop
+    merlin
+    ocp-indent
+  ]);
   IN_NIX_SHELL = 1;
   UTOP_SITE_LISP = "${ocamlPackages.utop}/share/emacs/site-lisp";
   MERLIN_SITE_LISP = "${ocamlPackages.merlin}/share/emacs/site-lisp";
